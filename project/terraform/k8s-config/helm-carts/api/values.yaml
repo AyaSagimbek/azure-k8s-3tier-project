@@ -1,0 +1,25 @@
+deployment:
+  name: api
+  image: ayasagimbek/api
+  tag: latest
+  port: 3001
+  replicas: 2
+
+service:
+  name: api-service
+  type: LoadBalancer
+  port: 80
+  targetPort: 3001
+
+config:
+  name: api-config
+  data:
+    DB: hello
+    DBUSER: kaizen
+    DBHOST: mysql-service
+    DBPORT: "3306"
+
+secret:
+  name: api-secret
+  data:
+    DBPASS: kaizen123

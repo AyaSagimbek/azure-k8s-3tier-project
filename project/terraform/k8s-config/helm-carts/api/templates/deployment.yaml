@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.name }}
+  labels:
+    app: {{ .Values.deployment.name }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.deployment.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deployment.name }}
+    spec:
+      containers:
+      - name: {{ .Values.deployment.name }}
+        image: "{{ .Values.deployment.image }}:{{ .Values.deployment.tag }}"
+        ports:
+        - containerPort: {{ .Values.deployment.port }}
+        env:
+        - name: DB
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Values.config.name }}
+              key: DB
+        - name: DBUSER
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Values.config.name }}
+              key: DBUSER
+        - name: DBHOST
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Values.config.name }}
+              key: DBHOST
+        - name: DBPORT
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Values.config.name }}
+              key: DBPORT
+        - name: DBPASS
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.secret.name }}
+              key: DBPASS
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: {{ .Values.deployment.port }}
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: {{ .Values.deployment.port }}
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+

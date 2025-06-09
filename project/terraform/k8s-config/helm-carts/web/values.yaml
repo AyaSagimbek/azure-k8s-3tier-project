@@ -1,0 +1,19 @@
+deployment:
+  name: web
+  image: ayasagimbek/web
+  tag: latest
+  port: 3000
+  replicas: 2
+
+service:
+  name: web-service
+  type: LoadBalancer
+  port: 80
+  targetPort: 3000
+
+config:
+  name: web-config
+  data:
+    API_URL: http://3.133.134.116:3001 
+
+

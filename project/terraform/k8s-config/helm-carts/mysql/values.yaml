@@ -1,0 +1,14 @@
+mysql:
+  name: mysql
+  image: mysql
+  tag: "8.0"
+  port: 3306
+  storage: 1Gi
+  db: hello
+  user: kaizen
+  password: kaizen123
+  rootPassword: rootpass123
+
+service:
+  name: mysql-service
+  port: 3306
