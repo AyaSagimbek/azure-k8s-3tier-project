@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ .Values.config.name }}
-data:
-  DB: {{ .Values.config.data.DB }}
-  DBUSER: {{ .Values.config.data.DBUSER }}
-  DBHOST: {{ .Values.config.data.DBHOST }}
-  DBPORT: {{ .Values.config.data.DBPORT }}

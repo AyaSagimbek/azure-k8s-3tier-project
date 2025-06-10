@@ -25,11 +25,6 @@ spec:
             configMapKeyRef:
               name: {{ .Values.config.name }}
               key: API_URL
-        - name: SOME_KEY
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Values.secret.name }}
-              key: SOME_KEY
         readinessProbe:
           httpGet:
             path: /

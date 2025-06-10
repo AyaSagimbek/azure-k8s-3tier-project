@@ -1,7 +1,7 @@
 deployment:
   name: web
-  image: ayasagimbek/web
-  tag: latest
+  image: ayasagimbek/web-app
+  tag: "1.0.0"
   port: 3000
   replicas: 2
 
@@ -14,6 +14,5 @@ service:
 config:
   name: web-config
   data:
-    API_URL: http://3.133.134.116:3001 
-
+    API_URL: "http://3.133.134.116:3001"
 

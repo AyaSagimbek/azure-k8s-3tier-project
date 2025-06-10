@@ -1,11 +1,11 @@
-output "web_chart_status" {
-  value = helm_release.web.status
+output "api_release_name" {
+  value = helm_release.api.name
 }
 
-output "api_chart_status" {
-  value = helm_release.api.status
+output "web_release_name" {
+  value = helm_release.web.name
 }
 
-output "mysql_chart_status" {
-  value = helm_release.mysql.status
+output "mysql_release_name" {
+  value = helm_release.mysql.name
 }

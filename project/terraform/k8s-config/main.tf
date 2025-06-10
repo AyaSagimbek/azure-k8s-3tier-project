@@ -8,35 +8,33 @@ provider "helm" {
   }
 }
 
-# Deploy MySQL
 resource "helm_release" "mysql" {
-  name       = "mysql"
-  chart      = "${path.module}/../../charts/mysql"
-  namespace  = "default"
+  name      = "mysql"
+  chart     = var.mysql_chart_dir   
+  namespace = var.namespace
 
   values = [
-    file("${path.module}/../../charts/mysql/values.yaml")
+    file(var.mysql_values_path)    
   ]
 }
 
-# Deploy API
 resource "helm_release" "api" {
-  name       = "api"
-  chart      = "${path.module}/../../charts/api"
-  namespace  = "default"
+  name      = "api"
+  chart     = var.api_chart_dir
+  namespace = var.namespace
 
   values = [
-    file("${path.module}/../../charts/api/values.yaml")
+    file(var.api_values_path)
   ]
 }
 
-# Deploy Web
 resource "helm_release" "web" {
-  name       = "web"
-  chart      = "${path.module}/../../charts/web"
-  namespace  = "default"
+  name      = "web"
+  chart     = var.web_chart_dir
+  namespace = var.namespace
 
   values = [
-    file("${path.module}/../../charts/web/values.yaml")
+    file(var.web_values_path)
   ]
+
 }

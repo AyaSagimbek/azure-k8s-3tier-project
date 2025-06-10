@@ -4,17 +4,32 @@ variable "namespace" {
   default     = "default"
 }
 
-variable "api_chart_path" {
-  type        = string
-  default     = "../../charts/api"
+variable "mysql_values_path" {
+  type    = string
+  default = "./helm-charts/mysql/values.yaml"
 }
 
-variable "web_chart_path" {
-  type        = string
-  default     = "../../charts/web"
+variable "api_values_path" {
+  type    = string
+  default = "./helm-charts/api/values.yaml"
 }
 
-variable "mysql_chart_path" {
-  type        = string
-  default     = "../../charts/mysql"
+variable "web_values_path" {
+  type    = string
+  default = "./helm-charts/web/values.yaml"
+}
+
+variable "mysql_chart_dir" {
+  type    = string
+  default = "./helm-charts/mysql"
+}
+
+variable "api_chart_dir" {
+  type    = string
+  default = "./helm-charts/api"
+}
+
+variable "web_chart_dir" {
+  type    = string
+  default = "./helm-charts/web"
 }
