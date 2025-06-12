@@ -26,6 +26,8 @@ resource "helm_release" "api" {
   values = [
     file(var.api_values_path)
   ]
+
+  depends_on = [helm_release.mysql]
 }
 
 resource "helm_release" "web" {
@@ -37,4 +39,5 @@ resource "helm_release" "web" {
     file(var.web_values_path)
   ]
 
+  depends_on = [helm_release.api]
 }

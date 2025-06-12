@@ -27,16 +27,18 @@ spec:
               key: API_URL
         readinessProbe:
           httpGet:
-            path: /
+            path: /ready
             port: {{ .Values.deployment.port }}
-          initialDelaySeconds: 5
+          initialDelaySeconds: 60
           periodSeconds: 10
+          timeoutSeconds: 5
         livenessProbe:
-          httpGet:
-            path: /
+          httpGet: 
+            path: /health
             port: {{ .Values.deployment.port }}
-          initialDelaySeconds: 15
+          initialDelaySeconds: 60
           periodSeconds: 20
+          timeoutSeconds: 5
         resources:
           requests:
             memory: "128Mi"
