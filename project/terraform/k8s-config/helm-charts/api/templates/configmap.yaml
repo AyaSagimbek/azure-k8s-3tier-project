@@ -7,3 +7,4 @@ data:
   DBUSER: "{{ .Values.config.data.DBUSER }}"
   DBHOST: "{{ .Values.config.data.DBHOST }}"
   DBPORT: "{{ .Values.config.data.DBPORT }}"
+  PORT: "{{ .Values.config.data.PORT }}"

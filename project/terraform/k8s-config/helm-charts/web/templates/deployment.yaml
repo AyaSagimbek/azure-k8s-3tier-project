@@ -17,17 +17,23 @@ spec:
       containers:
       - name: {{ .Values.deployment.name }}
         image: "{{ .Values.deployment.image }}:{{ .Values.deployment.tag }}"
+        imagePullPolicy: {{ .Values.deployment.pullPolicy }}
         ports:
         - containerPort: {{ .Values.deployment.port }}
         env:
-        - name: API_URL
+        - name: API_HOST
           valueFrom:
             configMapKeyRef:
-              name: {{ .Values.config.name }}
-              key: API_URL
+              name:  {{ .Values.config.name }}
+              key: API_HOST
+        - name: PORT 
+          valueFrom:
+            configMapKeyRef:
+              name: web-config
+              key: PORT
         readinessProbe:
           httpGet:
-            path: /ready
+            path: /health
             port: {{ .Values.deployment.port }}
           initialDelaySeconds: 60
           periodSeconds: 10

@@ -3,4 +3,5 @@ kind: ConfigMap
 metadata:
   name: {{ .Values.config.name }}
 data:
-  API_URL: "{{ .Values.config.data.API_URL }}"
+  API_HOST: {{ .Values.env.API_HOST | quote }}
+  PORT: {{ .Values.env.PORT | quote }}

@@ -16,8 +16,9 @@ config:
   data:
     DB: hello
     DBUSER: kaizen
-    DBHOST: mysql-service
+    DBHOST: mysql-service 
     DBPORT: "3306"
+    PORT: "3001"
 
 secret:
   name: api-secret

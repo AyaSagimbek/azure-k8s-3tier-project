@@ -12,3 +12,16 @@ spec:
     - port: {{ .Values.service.port }}
       targetPort: {{ .Values.mysql.port }}
 
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service    
+  labels:
+    app: mysql
+spec:
+  selector:
+    app: mysql
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
